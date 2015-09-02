@@ -1,7 +1,0 @@
-c:\users\developer\documents\visual studio 2012\Projects\MHWarehouseCSharp\MHWarehouseCSharp\bin\Debug\MHWarehouseCSharp.exe.config
-c:\Users\developer\Documents\Visual Studio 2012\Projects\MHWarehouseCSharp\MHWarehouseCSharp\bin\Debug\MHWarehouseCSharp.exe
-c:\Users\developer\Documents\Visual Studio 2012\Projects\MHWarehouseCSharp\MHWarehouseCSharp\bin\Debug\MHWarehouseCSharp.pdb
-c:\Users\developer\Documents\Visual Studio 2012\Projects\MHWarehouseCSharp\MHWarehouseCSharp\bin\Debug\nunit.framework.dll
-c:\Users\developer\Documents\Visual Studio 2012\Projects\MHWarehouseCSharp\MHWarehouseCSharp\bin\Debug\nunit.framework.xml
-c:\Users\developer\Documents\Visual Studio 2012\Projects\MHWarehouseCSharp\MHWarehouseCSharp\obj\Debug\MHWarehouseCSharp.exe
-c:\Users\developer\Documents\Visual Studio 2012\Projects\MHWarehouseCSharp\MHWarehouseCSharp\obj\Debug\MHWarehouseCSharp.pdb

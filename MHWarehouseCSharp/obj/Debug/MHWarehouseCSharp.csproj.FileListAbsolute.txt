@@ -1,8 +1,0 @@
-C:\Users\developer\workspace\MHWarehouseCSharp\MHWarehouseCSharp\bin\Debug\MHWarehouseCSharp.exe.config
-C:\Users\developer\workspace\MHWarehouseCSharp\MHWarehouseCSharp\bin\Debug\MHWarehouseCSharp.exe
-C:\Users\developer\workspace\MHWarehouseCSharp\MHWarehouseCSharp\bin\Debug\MHWarehouseCSharp.pdb
-C:\Users\developer\workspace\MHWarehouseCSharp\MHWarehouseCSharp\bin\Debug\nunit.framework.dll
-C:\Users\developer\workspace\MHWarehouseCSharp\MHWarehouseCSharp\bin\Debug\nunit.framework.xml
-C:\Users\developer\workspace\MHWarehouseCSharp\MHWarehouseCSharp\obj\Debug\MHWarehouseCSharp.csprojResolveAssemblyReference.cache
-C:\Users\developer\workspace\MHWarehouseCSharp\MHWarehouseCSharp\obj\Debug\MHWarehouseCSharp.exe
-C:\Users\developer\workspace\MHWarehouseCSharp\MHWarehouseCSharp\obj\Debug\MHWarehouseCSharp.pdb
