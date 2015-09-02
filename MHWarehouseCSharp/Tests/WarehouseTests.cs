@@ -19,7 +19,7 @@ namespace MHWarehouseCSharp.Tests
             Box[] boxes = new Box[] {box1};
             testObject.addBoxes(boxes);
 
-            Assert.AreEqual(loadingDock.boxes, boxes);
+            Assert.That(loadingDock.boxes, Is.EquivalentTo(boxes));
         }
 
         [Test]
@@ -32,12 +32,14 @@ namespace MHWarehouseCSharp.Tests
             Box box3 = new Box("box3", 15);
             Box box4 = new Box("box4", 10);
 
-            Warehouse testObject = new Warehouse(new Room[] {loadingDock, mainStorage});
+            Warehouse testObject = new Warehouse(new Room[] { loadingDock, mainStorage });
 
-            testObject.addBoxes(new Box[] {box1, box2, box3, box4});
+            testObject.addBoxes(new Box[] { box1, box2, box3, box4 });
 
-            Assert.AreEqual(new Box[] {box1, box2, box3}, loadingDock.boxes);
-            Assert.AreEqual(new Box[] {box4}, mainStorage.boxes);
+            Box[] expectedLoadingDock = new Box[] {box1, box2, box3};
+            Box[] expectedMainStorage = new Box[] {box4};
+            Assert.That(loadingDock.boxes, Is.EquivalentTo(expectedLoadingDock));
+            Assert.That(mainStorage.boxes, Is.EquivalentTo(expectedMainStorage));
         }
 
         [Test]
@@ -50,12 +52,14 @@ namespace MHWarehouseCSharp.Tests
             Box box3 = new Box("box3", 51);
             Box box4 = new Box("box4", 10);
 
-            Warehouse testObject = new Warehouse(new Room[] {basement, mainStorage});
+            Warehouse testObject = new Warehouse(new Room[] { basement, mainStorage });
 
-            testObject.addBoxes(new Box[] {box1, box2, box3, box4});
+            testObject.addBoxes(new Box[] { box1, box2, box3, box4 });
 
-            Assert.AreEqual(new Box[] {box1, box2, box4}, basement.boxes);
-            Assert.AreEqual(new Box[] {box3}, mainStorage.boxes);
+            Box[] expectedBasement = new Box[] {box1, box2, box4};
+            Box[] expectedMainStorage = new Box[] {box3};
+            Assert.That(basement.boxes, Is.EquivalentTo(expectedBasement));
+            Assert.That(mainStorage.boxes, Is.EquivalentTo(expectedMainStorage));
         }
 
         [Test]
@@ -67,12 +71,14 @@ namespace MHWarehouseCSharp.Tests
             Box box3 = new Box("box3", 40);
             Box box4 = new Box("box4", 10);
 
-            Warehouse testObject = new Warehouse(new Room[] {loadingDock});
+            Warehouse testObject = new Warehouse(new Room[] { loadingDock });
 
-            Box[] rejectedBoxes = testObject.addBoxes(new Box[] {box1, box2, box3, box4});
+            Box[] rejectedBoxes = testObject.addBoxes(new Box[] { box1, box2, box3, box4 });
 
-            Assert.AreEqual(new Box[] {box1, box2, box4}, loadingDock.boxes);
-            Assert.AreEqual(new Box[] {box3}, rejectedBoxes);
+            Box[] expected = new Box[] { box1, box2, box4 };
+            Box[] rejected = new Box[] { box3 };
+            Assert.That(loadingDock.boxes, Is.EquivalentTo(expected));
+            Assert.That(rejectedBoxes, Is.EquivalentTo(rejected));
         }
 
         [Test]
@@ -84,13 +90,15 @@ namespace MHWarehouseCSharp.Tests
             Box box2 = new Box("box2", 10, HazmatFlags.CHEMICAL);
             Box box3 = new Box("box3", 10, HazmatFlags.NONE);
 
-            Warehouse testObject = new Warehouse(new Room[] {loadingDock, chemStorage});
+            Warehouse testObject = new Warehouse(new Room[] { loadingDock, chemStorage });
 
-            Box[] rejectedBoxes = testObject.addBoxes(new Box[] {box1, box2, box3});
+            Box[] rejectedBoxes = testObject.addBoxes(new Box[] { box1, box2, box3 });
 
-            Assert.AreEqual(new Box[] {box1, box3}, loadingDock.boxes);
-            Assert.AreEqual(new Box[] {box2}, chemStorage.boxes);
-            Assert.AreEqual(new Box[0], rejectedBoxes);
+            Box[] expectedLoadingDockBoxes = new Box[] { box1, box3 };
+            Box[] expectedChemStorageBoxes = new Box[] { box2 };
+            Assert.That(loadingDock.boxes, Is.EquivalentTo(expectedLoadingDockBoxes));
+            Assert.That(chemStorage.boxes, Is.EquivalentTo(expectedChemStorageBoxes));
+            Assert.IsEmpty(rejectedBoxes);
         }
 
         [Test]
@@ -102,13 +110,13 @@ namespace MHWarehouseCSharp.Tests
             Box box2 = new Box("box2", 10, HazmatFlags.CHEMICAL);
             Box box3 = new Box("box3", 10, HazmatFlags.NONE);
 
-            Warehouse testObject = new Warehouse(new Room[] {loadingDock, mainStorage});
+            Warehouse testObject = new Warehouse(new Room[] { loadingDock, mainStorage });
 
-            Box[] rejectedBoxes = testObject.addBoxes(new Box[] {box1, box2, box3});
+            Box[] rejectedBoxes = testObject.addBoxes(new Box[] { box1, box2, box3 });
 
-            Assert.AreEqual(new Box[] {box1, box3}, loadingDock.boxes);
-            Assert.AreEqual(new Box[0], mainStorage.boxes);
-            Assert.AreEqual(rejectedBoxes, new Box[] {box2});
+            Assert.That(loadingDock.boxes, Is.EquivalentTo(new Box[] { box1, box3 }));
+            Assert.IsEmpty(mainStorage.boxes);
+            Assert.That(rejectedBoxes, Is.EquivalentTo(new Box[] { box2 }));
         }
 
         [Test]
@@ -119,12 +127,12 @@ namespace MHWarehouseCSharp.Tests
             Box box2 = new Box("box2", 10, HazmatFlags.CHEMICAL);
             Box box3 = new Box("box3", 10, HazmatFlags.NONE);
 
-            Warehouse testObject = new Warehouse(new Room[] {nuclearStorage});
+            Warehouse testObject = new Warehouse(new Room[] { nuclearStorage });
 
-            Box[] rejectedBoxes = testObject.addBoxes(new Box[] {box1, box2, box3});
+            Box[] rejectedBoxes = testObject.addBoxes(new Box[] { box1, box2, box3 });
 
-            Assert.AreEqual(new Box[] {box1, box3}, nuclearStorage.boxes);
-            Assert.AreEqual(rejectedBoxes, new Box[] { box2 });
+            Assert.That(nuclearStorage.boxes, Is.EquivalentTo(new Box[] { box1, box3 }));
+            Assert.That(rejectedBoxes, Is.EquivalentTo(new Box[] { box2 }));
         }
 
         [Test]
@@ -140,13 +148,13 @@ namespace MHWarehouseCSharp.Tests
             Box box5 = new Box("box5", 50, HazmatFlags.CHEMICAL);
             Box box6 = new Box("box6", 50, HazmatFlags.CHEMICAL);
 
-            Warehouse testObject = new Warehouse(new Room[] {loadingDock, chemLoft, vault});
+            Warehouse testObject = new Warehouse(new Room[] { loadingDock, chemLoft, vault });
 
-            Box[] rejectedBoxes = testObject.addBoxes(new Box[] {box1, box2, box3, box4, box5, box6});
+            Box[] rejectedBoxes = testObject.addBoxes(new Box[] { box1, box2, box3, box4, box5, box6 });
 
-            Assert.AreEqual(loadingDock.boxes, new Box[0]);
-            Assert.AreEqual(new Box[] {box1, box5}, chemLoft.boxes);
-            Assert.AreEqual(new Box[] {box2, box3, box4, box6}, vault.boxes);
+            Assert.IsEmpty(loadingDock.boxes);
+            Assert.That(chemLoft.boxes, Is.EquivalentTo(new Box[] { box1, box5 }));
+            Assert.That(vault.boxes, Is.EquivalentTo(new Box[] { box2, box3, box4, box6 }));
             Assert.True(rejectedBoxes.Length == 0);
         }
 
@@ -161,12 +169,12 @@ namespace MHWarehouseCSharp.Tests
             Box box4 = new Box("box4", 60, HazmatFlags.NONE);
             Box box5 = new Box("box5", 60, HazmatFlags.CHEMICAL);
 
-            Warehouse testObject = new Warehouse(new Room[] {vault, mainStorage});
+            Warehouse testObject = new Warehouse(new Room[] { vault, mainStorage });
 
-            Box[] rejectedBoxes = testObject.addBoxes(new Box[] {box1, box2, box3, box4, box5});
+            Box[] rejectedBoxes = testObject.addBoxes(new Box[] { box1, box2, box3, box4, box5 });
 
-            Assert.AreEqual(new Box[] {box1, box5}, vault.boxes);
-            Assert.AreEqual(new Box[] {box2, box3, box4}, mainStorage.boxes);
+            Assert.That(vault.boxes, Is.EquivalentTo(new Box[] { box1, box5 }));
+            Assert.That(mainStorage.boxes, Is.EquivalentTo(new Box[] { box2, box3, box4 }));
             Assert.True(rejectedBoxes.Length == 0);
         }
 
@@ -181,12 +189,12 @@ namespace MHWarehouseCSharp.Tests
             Box box4 = new Box("box4", 30, HazmatFlags.NONE);
             Box box5 = new Box("box5", 60, HazmatFlags.CHEMICAL);
 
-            Warehouse testObject = new Warehouse(new Room[] {vault, mainStorage});
+            Warehouse testObject = new Warehouse(new Room[] { vault, mainStorage });
 
-            Box[] rejectedBoxes = testObject.addBoxes(new Box[] {box1, box2, box3, box4, box5});
+            Box[] rejectedBoxes = testObject.addBoxes(new Box[] { box1, box2, box3, box4, box5 });
 
-            Assert.AreEqual(new Box[] {box1, box4, box5}, vault.boxes);
-            Assert.AreEqual(new Box[] {box2, box3}, mainStorage.boxes);
+            Assert.That(vault.boxes, Is.EquivalentTo(new Box[] { box1, box4, box5 }));
+            Assert.That(mainStorage.boxes, Is.EquivalentTo(new Box[] { box2, box3 }));
             Assert.True(rejectedBoxes.Length == 0);
         }
     }
